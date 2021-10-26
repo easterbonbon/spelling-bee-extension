@@ -1,0 +1,11 @@
+{
+  "manifest_version": 2,
+  "version": "0.0.1",
+  "name": "Bee the Queen Bee",
+  "description": "Quickly discover which words you missed in today's NYT Spelling Bee game or filter the daily hints for the words you are missing in a click.",
+  "author": "Bonnie Lai",
+
+  "icons": {
+    "48": "assets/penguin-48.png"
+  }
+}
