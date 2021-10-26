@@ -24,11 +24,11 @@ p {
   transition: background-color .2s ease-out;
 }
 
-#content[contenteditable=true] {
+/* #content[contenteditable=true] {
   background-color: white;
   transition: background-color .2s ease-in;
-}
+} */
 
-[contenteditable]:focus {
+/* [contenteditable]:focus {
   outline: 0px solid transparent;
-}
+} */

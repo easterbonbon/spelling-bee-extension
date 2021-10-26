@@ -1,26 +1,28 @@
 // From https://github.com/mdn/webextensions-examples/tree/master/annotate-page/sidebar
 
-var myWindowId;
+let myWindowId;
 const contentBox = document.querySelector("#content");
 
 /*
 Make the content box editable as soon as the user mouses over the sidebar.
 */
 window.addEventListener("mouseover", () => {
-  contentBox.setAttribute("contenteditable", true);
+  // contentBox.setAttribute("contenteditable", true);
+  console.log(browser.runtime.getBackgroundPage())
+  contentBox.textContent = "food"
 });
 
 /*
 When the user mouses out, save the current contents of the box.
 */
-window.addEventListener("mouseout", () => {
-  contentBox.setAttribute("contenteditable", false);
-  browser.tabs.query({windowId: myWindowId, active: true}).then((tabs) => {
-    let contentToStore = {};
-    contentToStore[tabs[0].url] = contentBox.textContent;
-    browser.storage.local.set(contentToStore);
-  });
-});
+// window.addEventListener("mouseout", () => {
+//   contentBox.setAttribute("contenteditable", false);
+//   browser.tabs.query({windowId: myWindowId, active: true}).then((tabs) => {
+//     let contentToStore = {};
+//     contentToStore[tabs[0].url] = contentBox.textContent;
+//     browser.storage.local.set(contentToStore);
+//   });
+// });
 
 /*
 Update the sidebar's content.
@@ -29,13 +31,16 @@ Update the sidebar's content.
 3) Put it in the content box.
 */
 function updateContent() {
-  browser.tabs.query({windowId: myWindowId, active: true})
-    .then((tabs) => {
-      return browser.storage.local.get(tabs[0].url);
-    })
-    .then((storedInfo) => {
-      contentBox.textContent = storedInfo[Object.keys(storedInfo)[0]];
-    });
+  // browser.tabs.query({windowId: myWindowId, active: true})
+  //   .then((tabs) => {
+  //     return browser.storage.local.get(tabs[0].url);
+  //   })
+  //   .then((storedInfo) => {
+  //     contentBox.textContent = storedInfo[Object.keys(storedInfo)[0]];
+  //   });
+
+  // const backgroundWindow = browser.runtime.getBackgroundPage();
+  // contentBox.textContent = backgroundWindow.gameData.today.answers;
 }
 
 /*
