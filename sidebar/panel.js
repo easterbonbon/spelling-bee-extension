@@ -1,17 +1,26 @@
 // From https://github.com/mdn/webextensions-examples/tree/master/annotate-page/sidebar
 
-let myWindowId;
-let parentWindow;
 const contentBox = document.querySelector("#content");
+const viewToggleButton = document.querySelector("#toggle_button");
 
-window.addEventListener("click", () => {
+let areWordsHidden = true;
+
+// Set event handlers
+// window.addEventListener("click", updateContent);
+viewToggleButton.addEventListener("click", () => {
+  areWordsHidden = !areWordsHidden;
   updateContent();
 });
 
 function loadFoundWords(tab) {
   browser.tabs.executeScript(tab.id, { file: "/getFoundWords.js" }).then(result => {
+    console.log("Loaded found words on Spelling Bee tab");
     console.log(result);
-    contentBox.textContent = result[0];
+    if(areWordsHidden) {
+      contentBox.textContent = "Words are now hidden."
+    } else {
+      contentBox.textContent = result[0];
+    }
   });
 }
 
@@ -43,11 +52,3 @@ Update content when a new tab becomes active.
 Update content when a new page is loaded into a tab.
 */
 // browser.tabs.onUpdated.addListener(updateContent);
-
-/*
-When the sidebar loads, get the ID of its window.
-*/
-browser.windows.getCurrent({populate: true}).then((windowInfo) => {
-  myWindowId = windowInfo.id;
-  // updateContent();s
-});
