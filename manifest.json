@@ -5,15 +5,34 @@
   "description": "Quickly discover which words you missed in today's NYT Spelling Bee game or filter the daily hints for the words you are missing in a click.",
   "author": "Bonnie Lai",
 
+  "permissions": [
+    "storage",
+    "tabs",
+    "https://www.nytimes.com/puzzles/spelling-bee",
+    "activeTabs"
+  ],
+
   "icons": {
     "48": "assets/penguin-48.png"
   },
   "browser_action": {
-    "default_icon": "assets/penguin-48.png"
+    "default_icon": "assets/penguin-48.png",
+    "default_title": "Smelling Bee"
   },
+  //"background": {
+  //  "scripts": ["background.js"]
+  //},
+
   "sidebar_action": {
     "default_title": "Bee da Queen Bee",
     "default_panel": "sidebar/panel.html",
     "default_icon": "assets/penguin-48.png"
+  },
+  "commands": {
+    "_execute_sidebar_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y"
+      }
+    }
   }
 }

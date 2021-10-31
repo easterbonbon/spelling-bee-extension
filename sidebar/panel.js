@@ -1,15 +1,14 @@
 // From https://github.com/mdn/webextensions-examples/tree/master/annotate-page/sidebar
 
 let myWindowId;
+let parentWindow;
 const contentBox = document.querySelector("#content");
 
 /*
 Make the content box editable as soon as the user mouses over the sidebar.
 */
 window.addEventListener("mouseover", () => {
-  // contentBox.setAttribute("contenteditable", true);
-  console.log(browser.runtime.getBackgroundPage())
-  contentBox.textContent = "food"
+  updateContent();
 });
 
 /*
@@ -31,6 +30,23 @@ Update the sidebar's content.
 3) Put it in the content box.
 */
 function updateContent() {
+
+  function executeScript(tab) {
+    const script = 'console.log("Bep")'
+    browser.tabs.executeScript(tab.id, { code: script });
+  }
+
+  function updateTab(tabs) {
+    if (tabs[0]) {
+      currentTab = tabs[0];
+      console.log("updateTabs");
+      
+      executeScript(currentTab);
+    }
+  }
+
+  var gettingActiveTab = browser.tabs.query({active: true, currentWindow: true});
+  gettingActiveTab.then(updateTab);
   // browser.tabs.query({windowId: myWindowId, active: true})
   //   .then((tabs) => {
   //     return browser.storage.local.get(tabs[0].url);
@@ -59,5 +75,8 @@ and update its content.
 */
 browser.windows.getCurrent({populate: true}).then((windowInfo) => {
   myWindowId = windowInfo.id;
+  console.log(`myWindowId: ${myWindowId}`)
+  parentWindow = this.parent
+  console.log(`parentId: ${parentWindow.id}`)
   updateContent();
 });

@@ -7,3 +7,7 @@ gameData.today.answers.filter(x => !JSON.parse(localStorage['sb-today']).words.i
 // Note that `localStorage['sb-today']` is empty/undefined when no answers have been typed in.
 
 // Window is : https://www.nytimes.com/puzzles/spelling-bee
+
+
+const found_words = $(".sb-wordlist-items-pag").innerText.split('\n').map(x => x.toLowerCase())
+gameData.today.answers.filter(x => !found_words.includes(x)).join('\n')
