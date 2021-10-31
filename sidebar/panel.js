@@ -32,8 +32,19 @@ Update the sidebar's content.
 function updateContent() {
 
   function executeScript(tab) {
-    const script = 'console.log("Bep")'
-    browser.tabs.executeScript(tab.id, { code: script });
+    // const script = 'console.log("Bep"); "BeP"'
+    const script = "document.querySelector('ul.sb-wordlist-items-pag').innerText;"
+    browser.tabs.executeScript(tab.id, { code: script }).then(result => {
+      console.log(result);
+      contentBox.textContent = result[0];
+    });
+  }
+
+  function executeScriptFromFile(tab) {
+    browser.tabs.executeScript(tab.id, { file: "/getFoundWords.js" }).then(result => {
+      console.log(result);
+      contentBox.textContent = result[0];
+    });
   }
 
   function updateTab(tabs) {
@@ -41,7 +52,8 @@ function updateContent() {
       currentTab = tabs[0];
       console.log("updateTabs");
       
-      executeScript(currentTab);
+      // executeScript(currentTab);
+      executeScriptFromFile(currentTab);
     }
   }
 
@@ -56,7 +68,6 @@ function updateContent() {
   //   });
 
   // const backgroundWindow = browser.runtime.getBackgroundPage();
-  // contentBox.textContent = backgroundWindow.gameData.today.answers;
 }
 
 /*
