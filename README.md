@@ -12,3 +12,5 @@ To load the extension, just run:
 web-ext run
 ```
 in the root of this repository.
+
+To debug and see the console, go to `about:debugging` in the browser and inspect the extension.
