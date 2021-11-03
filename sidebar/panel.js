@@ -12,6 +12,51 @@ viewToggleButton.addEventListener("click", () => {
   updateContent();
 });
 
+
+
+function drawHints(jsonHints) {
+  function listOfLengths(lengths) {
+    const node = document.createElement('ul');
+    for (const length in lengths) {
+      const item = document.createElement('li');
+      item.textContent = `${length}: ${lengths[length]}`
+      node.appendChild(item);
+    }
+    return node;
+  }
+
+  function listOfFirstTwoLetters(firstTwoLetters) {
+    const node = document.createElement('ul');
+    for (const firstTwo in firstTwoLetters) {
+      const item = document.createElement('li');
+      item.textContent = `${firstTwo}: ${firstTwoLetters[firstTwo]}`
+      node.appendChild(item);
+    }
+    return node;
+  }
+  
+  const hints = JSON.parse(jsonHints);
+
+  const letterNodes = [];
+  
+  for (const letter in hints) {
+    const letterHeader = document.createElement('h2');
+    letterHeader.textContent = letter;
+
+    const lengths = hints[letter].lengths;
+    const lengthsNode = listOfLengths(lengths);
+
+    const firstTwoLetters = hints[letter].firstTwo;
+    const firstTwoNode = listOfFirstTwoLetters(firstTwoLetters);
+
+    letterNodes.push(letterHeader);
+    letterNodes.push(lengthsNode);
+    letterNodes.push(firstTwoNode);
+  }
+
+  return letterNodes;
+}
+
 function loadFoundWords(tab) {
   browser.tabs.executeScript(tab.id, { file: "/getHints.js" }).then(result => {
     console.log("Loaded found words on Spelling Bee tab");
@@ -19,7 +64,7 @@ function loadFoundWords(tab) {
     if(areWordsHidden) {
       contentBox.textContent = "Words are now hidden."
     } else {
-      contentBox.textContent = result[0];
+      contentBox.replaceChildren(...drawHints(result));
     }
   });
 }
