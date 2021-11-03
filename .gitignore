@@ -1,0 +1,5 @@
+.env
+
+# The built web extension file will be here
+web-ext-artifacts/*
+.web-extension-id

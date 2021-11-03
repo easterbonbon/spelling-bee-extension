@@ -2,6 +2,8 @@
 For those who love to play the New York Times (NYT) Spelling Bee and want to uncover all the words and **bee**come the Queen Bee!
 Link to NYT's Spelling Bee: (https://www.nytimes.com/puzzles/spelling-bee).
 
+## Installing add-on
+https://extensionworkshop.com/documentation/publish/distribute-sideloading/
 ## Development
 Use `web-ext` to quickly load the extension into the browser.
 ```
@@ -15,6 +17,12 @@ web-ext run
 in the root of this repository.
 
 To debug and see the console, go to `about:debugging` in the browser and inspect the extension.
+
+## Publishing
+You'll need to sign the extension.
+Generate an API key if you haven't already: https://addons.mozilla.org/en-US/developers/addon/api/key/
+* `cp .env.example .env` and add your API key information
+* `./publishScript.sh` _Be patient; it can take a while_
 
 ----
 ## Logic
