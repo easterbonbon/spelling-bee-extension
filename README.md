@@ -14,3 +14,13 @@ web-ext run
 in the root of this repository.
 
 To debug and see the console, go to `about:debugging` in the browser and inspect the extension.
+
+----
+## Logic
+### How the answers are retrieved
+A content script is run within the Spelling Bee page. That content script injects a script element into the
+DOM which can access the custom properties (e.g. `gameData`) of the window. The script element script will read the
+answers from `gameData.today.answers` and place them in within a hidden element on the DOM.
+
+The content script will then be able to read the hidden element's content and return the answers to the extension.
+  
