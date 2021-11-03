@@ -13,7 +13,7 @@ viewToggleButton.addEventListener("click", () => {
 });
 
 function loadFoundWords(tab) {
-  browser.tabs.executeScript(tab.id, { file: "/getFoundWords.js" }).then(result => {
+  browser.tabs.executeScript(tab.id, { file: "/getHints.js" }).then(result => {
     console.log("Loaded found words on Spelling Bee tab");
     console.log(result);
     if(areWordsHidden) {
