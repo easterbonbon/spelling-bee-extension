@@ -12,6 +12,8 @@
     "activeTabs"
   ],
 
+  "web_accessible_resources": ["/injectAnswers.js"],
+
   "icons": {
     "48": "assets/penguin-48.png"
   },
