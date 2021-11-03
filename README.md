@@ -1,5 +1,6 @@
 # Spelling Bee Browser Extension
 For those who love to play the New York Times (NYT) Spelling Bee and want to uncover all the words and **bee**come the Queen Bee!
+Link to NYT's Spelling Bee: (https://www.nytimes.com/puzzles/spelling-bee).
 
 ## Development
 Use `web-ext` to quickly load the extension into the browser.

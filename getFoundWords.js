@@ -25,6 +25,8 @@ if (hiddenAnswersElement == null) {
 }
 
 daAnswers = extractAnswersFromList(hiddenAnswersElement);
-daAnswers.join('\n');
+foundWords = extractFoundWords();
 
-// this.window.gameData.today.answers.filter(x => !found_words.includes(x)).join('\n')
+filteredAnswers = daAnswers.filter(x => !foundWords.includes(x));
+
+filteredAnswers.join('\n');

@@ -7,7 +7,7 @@ function createListOfAnswers() {
 }
 
 function populateListWithAnswers(listNode) {
-  const answers = window.gameData.yesterday.answers;
+  const answers = window.gameData.today.answers;
   
   answers.forEach(answer => {
     const item = document.createElement('li');
